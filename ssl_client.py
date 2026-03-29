@@ -13,30 +13,30 @@ class SSLClient:
     def test_connection(self):
         """Test koneksi ke server SSL"""
         print("=" * 60)
-        print("🔒 Testing SSL/TLS Connection")
+        print("Testing SSL/TLS Connection")
         print("=" * 60)
         
         try:
             response = requests.get(self.base_url, verify=False)
             
-            print(f"\n✅ Status Code: {response.status_code}")
-            print(f"📡 URL: {response.url}")
-            print(f"🔐 HTTPS: {'YES ✓' if response.url.startswith('https') else 'NO ✗'}")
+            print(f"\nStatus Code: {response.status_code}")
+            print(f"URL: {response.url}")
+            print(f"HTTPS: {'YES' if response.url.startswith('https') else 'NO'}")
             
             data = response.json()
-            print(f"\n📦 Response Data:")
+            print(f"\nResponse Data:")
             print(json.dumps(data, indent=2))
             
             return True
             
         except Exception as e:
-            print(f"\n❌ Error: {e}")
+            print(f"\nError: {e}")
             return False
     
     def send_data(self, payload):
         """Kirim data ke server via SSL"""
         print("\n" + "=" * 60)
-        print("📤 Sending Data via SSL/TLS")
+        print("Sending Data via SSL/TLS")
         print("=" * 60)
         
         try:
@@ -48,16 +48,16 @@ class SSLClient:
                 verify=False
             )
             
-            print(f"\n✅ Status Code: {response.status_code}")
+            print(f"\nStatus Code: {response.status_code}")
             
             data = response.json()
-            print(f"\n📦 Server Response:")
+            print(f"\nServer Response:")
             print(json.dumps(data, indent=2))
             
             # Tampilkan SSL Info
             if 'ssl_info' in data:
                 ssl = data['ssl_info']
-                print(f"\n🔐 SSL/TLS Information:")
+                print(f"\nSSL/TLS Information:")
                 print(f"   - Protocol: {ssl.get('ssl_protocol', 'N/A')}")
                 print(f"   - Cipher: {ssl.get('ssl_cipher', 'N/A')}")
                 print(f"   - Server: {ssl.get('server_name', 'N/A')}")
@@ -65,12 +65,12 @@ class SSLClient:
             return data
             
         except Exception as e:
-            print(f"\n❌ Error: {e}")
+            print(f"\nError: {e}")
             return None
 
 def main():
     # URL server SSL Node.js
-    SERVER_URL = "https://localhost:3443"
+    SERVER_URL = "https://localhost:3443/api"
     
     print("╔" + "═" * 58 + "╗")
     print("║" + " " * 15 + "SSL/TLS CLIENT DEMO" + " " * 24 + "║")
@@ -93,7 +93,7 @@ def main():
         client.send_data(test_data)
         
         print("\n" + "=" * 60)
-        print("✅ Demo SSL/TLS Selesai!")
+        print("Demo SSL/TLS Selesai!")
         print("=" * 60)
 
 if __name__ == "__main__":
