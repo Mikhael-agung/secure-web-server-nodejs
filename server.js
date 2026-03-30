@@ -10,7 +10,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Route API - HARUS DI ATAS static files
+// Route API 
 app.get('/api', (req, res) => {
     const sslInfo = {
         ssl_enabled: req.secure,
@@ -50,7 +50,7 @@ app.post('/api', (req, res) => {
     });
 });
 
-// Static files SETELAH API routes
+// Static files API routes
 app.use(express.static('public'));
 
 // SSL Certificate
